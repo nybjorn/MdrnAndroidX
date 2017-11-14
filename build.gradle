@@ -4,27 +4,63 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
+
 android {
     compileSdkVersion 26
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "info.nyberg.mdrnandroidx"
-        minSdkVersion 18
+        minSdkVersion 19
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+
+        finalProduction {
+            dimension "default"
+            applicationId "info.nyberg.mdrnandroidx"
+            resValue "string", "app_name", "MdrnAndroidX"
+        }
+
+        demoProduction {
+            dimension "default"
+            applicationId "info.nyberg.mdrnandroidx.demoproduction"
+            resValue "string", "app_name", "MdrnAndroidX Demo P"
+        }
+
+        demoTesting {
+            dimension "default"
+            applicationId "info.nyberg.mdrnandroidx.demotesting"
+            resValue "string", "app_name", "MdrnAndroidX Demo T"
+        }
+
+
+        mock {
+            dimension "default"
+            applicationId "info.nyberg.mdrnandroidx.mock"
+            resValue "string", "app_name", "MdrnAndroidX Mock"
         }
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
