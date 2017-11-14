@@ -1,0 +1,22 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="info.nyberg.mdrnandroidx">
+
+    <application android:label="SystemOverlay" >
+        <activity
+            android:name="info.nyberg.mdrnandroidx.MainActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="info.nyberg.mdrnandroidx.OverlayShowingService"
+            android:exported="false" />
+    </application>
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+</manifest>
